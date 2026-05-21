@@ -228,24 +228,83 @@ netsh advfirewall firewall add rule name="Cocoon Upload 5001" dir=in action=allo
 
 ## Project Structure
 
-Top-level layout (kept short):
+```
+silksense-ai/
+├── README.md
+├── moisture_info.md
+├── Research Paper.txt
+│
+├── silksense-backend/                     # Flask backend (Python)
+│   ├── app.py                             # Main API (classify, yield, sensor routes)
+│   ├── requirements.txt                   # Backend dependencies
+│   │
+│   ├── cocoon_upload/                     # Image upload server (separate Flask app)
+│   │   ├── app.py                         # Upload routes & QR generation
+│   │   ├── requirements.txt               # Upload server deps
+│   │   ├── templates/
+│   │   │   ├── index.html                 # PC dashboard (shows QR, live uploads)
+│   │   │   └── upload.html                # Mobile upload page
+│   │   ├── static/
+│   │   │   └── qr.png                     # Generated QR code (dynamic)
+│   │   └── uploads/                       # Temp storage for uploaded images
+│   │
+│   ├── models/                            # Pre-trained ML models
+│   │   ├── best_seg.pt                    # YOLOv8s segmentation weights
+│   │   ├── best_classifier.pth            # EfficientNet-B0 classification weights
+│   │   ├── poly_transform.pkl             # PolynomialFeatures scaler
+│   │   └── best_model.pkl                 # Renditta prediction model
+│   │
+│   └── uploads/                           # Image storage for results
+│       ├── cocoon_YYYYMMDD_HHMMSS.jpg     # Original uploads
+│       └── result_cocoon_*.jpg           # Annotated results (w/ boxes)
+│
+├── silksense-frontend/                    # React frontend (JavaScript)
+│   ├── package.json                       # npm dependencies & scripts
+│   ├── vite.config.js                     # Vite configuration (proxy setup)
+│   ├── index.html                         # HTML entry point
+│   │
+│   ├── src/
+│   │   ├── main.jsx                       # React root
+│   │   ├── App.jsx                        # Route configuration
+│   │   ├── styles/
+│   │   │   └── global.css                 # Global theme (colors, fonts)
+│   │   │
+│   │   ├── components/                    # Reusable React components
+│   │   │   ├── Navbar.jsx / Navbar.css
+│   │   │   ├── ImageInput.jsx / ImageInput.css
+│   │   │   ├── AnalysisResults.jsx / AnalysisResults.css
+│   │   │   ├── MoistureCapture.jsx / MoistureCapture.css
+│   │   │   ├── YieldEstimation.jsx / YieldEstimation.css
+│   │   │   └── SensorStrip.jsx / SensorStrip.css
+│   │   │
+│   │   ├── hooks/
+│   │   │   └── useSensor.js               # Polls /sensor/latest
+│   │   │
+│   │   ├── pages/                         # Full page components
+│   │   │   ├── Home.jsx / Home.css
+│   │   │   ├── Cocoons.jsx / Cocoons.css
+│   │   │   └── Dashboard.jsx / Dashboard.css
+│   │   │
+│   │   └── assets/                        # Static images
+│   │       ├── qualified.jpg
+│   │       ├── double.jpg
+│   │       ├── crushed.jpg
+│   │       ├── decayed.jpg
+│   │       ├── pierced.jpg
+│   │       ├── yellow-spotted.jpg
+│   │       └── silkworm-lifecycle.png
+│   │
+│   └── dist/                              # Build output (npm run build)
+│
+└── .gitignore
+```
 
-```
-silksense-backend/
-  app.py
-  cocoon_upload/
-    app.py
-    templates/
-    uploads/
-  models/
-  uploads/
-silksense-frontend/
-  src/
-    components/
-    pages/
-  package.json
-README.md
-```
+### Key Directories Explained
+
+- **silksense-backend/** — Main ML pipeline: Flask API, YOLO, EfficientNet inference, model files in `models/`, and `uploads/` for image storage.
+- **silksense-backend/cocoon_upload/** — Small Flask upload app that serves a QR dashboard and a mobile upload page; saves images to its `uploads/` folder.
+- **silksense-backend/models/** — Pretrained weights used by the backend (place the `.pt`, `.pth`, and `.pkl` files here).
+- **silksense-frontend/** — React app built with Vite; `src/` contains components, pages, hooks, and static assets for the UI.
 
 ---
 
@@ -338,5 +397,3 @@ Fix:
 This project is licensed under the MIT License — see `LICENSE` file for details.
 
 ---
-
-If you'd like, I can now run a quick check that `README.md` exists and open it for review. Would you like me to do that?
