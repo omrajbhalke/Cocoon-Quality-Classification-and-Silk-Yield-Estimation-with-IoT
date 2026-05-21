@@ -48,6 +48,25 @@ SilkSense automates the entire workflow:
 
 ---
 
+## 🧭 Home & Cocoons Page Summary
+
+The application includes two informative front-end pages that explain how SilkSense works and why moisture matters:
+
+- **Home page**
+  - Presents the workflow: capture, analyse, measure, estimate.
+  - Highlights that AI is used for cocoon detection and defect classification.
+  - Describes the importance of moisture correction using averaged sensor readings from the batch.
+  - Shows the formula used to convert measured weight into corrected weight: `W_final = W_measured × (1 − M) × Ct × Ch`.
+  - Explains why high humidity inflates raw cocoon weight and how corrected weight leads to more accurate silk yield estimates.
+
+- **Cocoons page**
+  - Defines each cocoon category: qualified, double, crushed, decayed, pierced, and yellow-spotted.
+  - Shows batch grading thresholds and their quality meaning (A/B/C/D).
+  - Explains Renditta as the cocoon-to-silk conversion efficiency, where higher defect rates increase actual raw weight required.
+  - Reinforces that moisture, temperature, and humidity affect raw weight interpretation and yield estimation.
+
+---
+
 ## ✨ Key Features
 
 ### 🤖 AI & Computer Vision
@@ -1121,15 +1140,3 @@ A: Yes. Use Docker + Kubernetes for scaling. Replace Flask dev server with Gunic
 A: Every 5 seconds is default. Adjust `delay(5000)` in ESP32 sketch.
 
 ---
-
-## 📧 Support & Contact
-
-For questions, issues, or contributions:
-
-- **GitHub Issues**: [silksense-ai/issues](https://github.com/yourusername/silksense-ai/issues)
-- **Email**: silksense.ai@example.com
-- **Documentation**: [Full Docs](./docs/)
-
----
-
-**Last Updated:** May 2024 | **Version:** 3.0 | **Status:** Stable ✅
