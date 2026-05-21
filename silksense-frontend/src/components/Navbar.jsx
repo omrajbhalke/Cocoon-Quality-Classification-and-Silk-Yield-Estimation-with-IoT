@@ -1,13 +1,13 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import './Navbar.css'
 
 export default function Navbar() {
   return (
     <nav className="navbar">
-      <div className="nav-brand">
+      <Link to="/" className="nav-brand">
         Silk<span className="brand-accent">Sense</span>
         <span className="nav-version">AI v3</span>
-      </div>
+      </Link>
       <div className="nav-links">
         <NavLink to="/"          className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} end>Home</NavLink>
         <NavLink to="/cocoons"   className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>About Cocoons</NavLink>
