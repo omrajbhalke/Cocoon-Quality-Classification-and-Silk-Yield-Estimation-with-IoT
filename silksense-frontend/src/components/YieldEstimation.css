@@ -1,0 +1,254 @@
+.yield-estimation {
+  display: grid;
+  gap: 24px;
+}
+
+.ye-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.ye-left,
+.ye-right {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 24px;
+}
+
+.avg-context {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.ac-label {
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+}
+
+.ac-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ac-pill {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.ac-pill--accent {
+  background: rgba(0, 229, 160, 0.12);
+  border-color: rgba(0, 229, 160, 0.25);
+}
+
+.weight-input-wrap {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.weight-label {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.weight-field {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+}
+
+.weight-input {
+  border: none;
+  background: transparent;
+  color: var(--text);
+  padding: 16px 16px;
+  font-size: 16px;
+  outline: none;
+}
+
+.weight-unit {
+  display: grid;
+  place-items: center;
+  padding: 0 16px;
+  color: var(--muted);
+}
+
+.input-error {
+  color: var(--red);
+  font-size: 13px;
+}
+
+.formula-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.fc-label {
+  color: var(--muted);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.fc-formula {
+  font-family: var(--font-display);
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.fc-sub {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.estimate-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 18px;
+  background: var(--green);
+  color: #0a0a0f;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.1s ease, opacity 0.2s ease;
+}
+
+.estimate-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.estimate-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.estimate-btn--loading {
+  opacity: 0.9;
+}
+
+.btn-spin {
+  animation: spin 1s linear infinite;
+}
+
+.result-placeholder {
+  display: grid;
+  gap: 16px;
+  place-items: center;
+  min-height: 320px;
+  color: var(--muted);
+}
+
+.rp-icon {
+  font-size: 42px;
+}
+
+.result-card {
+  display: grid;
+  gap: 18px;
+}
+
+.rc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-weight: 700;
+}
+
+.rc-grade {
+  font-size: 14px;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.03);
+}
+
+.result-row--accent {
+  background: rgba(0, 229, 160, 0.12);
+}
+
+.result-row--large {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.result-label {
+  color: var(--muted);
+}
+
+.result-value {
+  color: var(--text);
+}
+
+.improvement-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.03);
+  color: var(--muted);
+}
+
+.sensor-used-card {
+  display: grid;
+  gap: 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 18px;
+}
+
+.suc-label {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.suc-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text);
+}
+
+.reset-btn {
+  margin-top: 10px;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 14px 16px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .ye-layout {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,95 @@
+/* ── Dashboard Page Layout ── */
+.dashboard-page {
+  min-height: 100vh;
+  background: var(--bg);
+  padding-bottom: 80px;
+}
+
+/* ── Step Progress Bar ── */
+.step-bar {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  padding: 28px 40px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.step-active .step-circle {
+  background: var(--green);
+  color: #0a0a0f;
+  border: 2px solid var(--green);
+}
+.step-done .step-circle {
+  background: rgba(0, 229, 160, 0.15);
+  color: var(--green);
+  border: 1.5px solid var(--green);
+}
+.step-locked .step-circle {
+  background: transparent;
+  color: var(--muted);
+  border: 1.5px solid var(--border);
+}
+
+.step-text {
+  display: flex;
+  flex-direction: column;
+}
+.step-label {
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-display);
+  color: var(--text);
+  white-space: nowrap;
+}
+.step-locked .step-label { color: var(--muted); }
+
+.step-desc {
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  margin-top: 1px;
+}
+
+.step-connector {
+  width: 60px;
+  height: 1px;
+  background: var(--border);
+  margin: 0 12px;
+  flex-shrink: 0;
+}
+
+/* ── Main Content Area ── */
+.dashboard-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 40px 0;
+}
+
+@media (max-width: 768px) {
+  .step-bar { padding: 20px 20px 16px; }
+  .step-connector { width: 28px; margin: 0 6px; }
+  .dashboard-content { padding: 24px 20px 0; }
+}

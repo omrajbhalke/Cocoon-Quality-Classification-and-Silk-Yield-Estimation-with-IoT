@@ -1,0 +1,234 @@
+# ══════════════════════════════════════════════════════════
+# SilkSense AI — Comprehensive .gitignore
+# ══════════════════════════════════════════════════════════
+
+# ──────────────────────────────────────────────────────────
+# Python Backend
+# ──────────────────────────────────────────────────────────
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+.env
+.env.local
+.env.*.local
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyCharm
+.idea/
+*.iml
+out/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ──────────────────────────────────────────────────────────
+# Node.js Frontend
+# ──────────────────────────────────────────────────────────
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+npm-debug.log
+yarn-error.log
+
+# Build output
+dist/
+build/
+.next/
+out/
+
+# Vite cache
+.vite/
+.vite-cache/
+
+# Environment
+.env
+.env.local
+.env.*.local
+.env.production.local
+.env.development.local
+.env.test.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ──────────────────────────────────────────────────────────
+# Uploaded images & results
+silksense-backend/uploads/
+silksense-backend/cocoon_upload/uploads/
+silksense-backend/cocoon_upload/static/qr.png
+
+# ──────────────────────────────────────────────────────────
+# OS & IDE Files
+# ──────────────────────────────────────────────────────────
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+.Trash-*
+
+# VS Code
+.vscode/
+*.code-workspace
+.history/
+
+# JetBrains IDEs
+.idea/
+.idea_modules/
+*.iml
+*.iws
+*.ipr
+*.class
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+.vim/
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# ──────────────────────────────────────────────────────────
+# Sensitive & Local Data
+# ──────────────────────────────────────────────────────────
+
+# API keys & credentials
+.env
+.env.local
+.env.*.local
+.env.production
+secrets/
+credentials/
+keys/
+*.key
+*.pem
+*.cert
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# ──────────────────────────────────────────────────────────
+# IoT & Hardware
+# ──────────────────────────────────────────────────────────
+
+# Arduino build artifacts
+.pio/
+.pioenvs/
+.piolibdeps/
+build-*
+*.o
+*.a
+*.so
+
+# PlatformIO
+.vscode/.deepscan
+
+# ──────────────────────────────────────────────────────────
+# Project Specific
+# ──────────────────────────────────────────────────────────
+
+# Backend uploads (processed images)
+silksense-backend/uploads/
+silksense-backend/cocoon_upload/uploads/
+silksense-backend/cocoon_upload/static/
+
+# Frontend build cache
+silksense-frontend/.vite/
+silksense-frontend/dist/
+
+# Local test files
+test_images/
+test_output/
+temp_models/
+
+# ──────────────────────────────────────────────────────────
+# Additional Safe Ignores
+# ──────────────────────────────────────────────────────────
+
+# Don't commit large video/image files (use Git LFS if needed)
+*.mp4
+*.avi
+*.mov
+*.wmv
+
+# Cache
+.cache/
+*.cache
+
+# Backup files
+*.backup
+*.bak
+*.backup.*

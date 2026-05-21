@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Cocoon Capture</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #13131a;
+    --border: #2a2a3a;
+    --green: #00e5a0;
+    --text: #e8e8f0;
+    --muted: #6b6b88;
+    --red: #ff4d6d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px;
+  }
+
+  .logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: 0.14em;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 380px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .camera-icon {
+    width: 72px; height: 72px;
+    background: #00e5a014;
+    border: 1.5px solid #00e5a044;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 20px;
+  }
+
+  h1 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  /* preview */
+  #preview-wrap {
+    display: none;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    aspect-ratio: 1;
+    background: #000;
+  }
+  #preview-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* file input hidden */
+  #file-input { display: none; }
+
+  /* buttons */
+  .btn {
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    margin-bottom: 10px;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary {
+    background: var(--green);
+    color: #000;
+  }
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-upload {
+    background: #7c6af7;
+    color: #fff;
+    display: none;
+  }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* status */
+  #status {
+    margin-top: 16px;
+    font-size: 13px;
+    min-height: 20px;
+    transition: all 0.3s;
+  }
+  .status-ok   { color: var(--green); }
+  .status-err  { color: var(--red); }
+  .status-info { color: var(--muted); }
+
+  /* spinner */
+  .spinner {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border: 2px solid #ffffff44;
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* success screen */
+  #success-screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+  }
+  .checkmark {
+    width: 64px; height: 64px;
+    background: #00e5a020;
+    border: 2px solid var(--green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes pop { from { transform:scale(0); } to { transform:scale(1); } }
+  .success-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--green);
+  }
+  .success-sub { font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="logo">◆ COCOON CAPTURE</div>
+
+<div class="card" id="main-card">
+  <div class="camera-icon">🐛</div>
+  <h1>Capture cocoon</h1>
+  <p class="subtitle">Take a photo or choose from gallery.<br>It uploads to the PC automatically.</p>
+
+  <div id="preview-wrap">
+    <img id="preview-img" src="" alt="Preview">
+  </div>
+
+  <!-- take photo with camera -->
+  <button class="btn btn-primary" onclick="document.getElementById('file-input').click(); document.getElementById('file-input').setAttribute('capture','environment')">
+    📷 Open camera
+  </button>
+
+  <!-- choose from gallery -->
+  <button class="btn btn-secondary" id="gallery-btn" onclick="document.getElementById('file-input').removeAttribute('capture'); document.getElementById('file-input').click()">
+    🖼 Choose from gallery
+  </button>
+
+  <!-- hidden input -->
+  <input type="file" id="file-input" accept="image/*" onchange="onFileSelected(this)">
+
+  <!-- upload button (shown after preview) -->
+  <button class="btn btn-upload" id="upload-btn" onclick="uploadImage()">
+    ⬆ Upload to PC
+  </button>
+
+  <div id="status"></div>
+
+  <!-- success -->
+  <div id="success-screen">
+    <div class="checkmark">✓</div>
+    <div class="success-title">Uploaded!</div>
+    <div class="success-sub" id="success-filename"></div>
+    <button class="btn btn-primary" style="margin-top:8px" onclick="resetForm()">📷 Upload another</button>
+  </div>
+</div>
+
+<script>
+let selectedFile = null;
+
+function onFileSelected(input) {
+  if (!input.files || !input.files[0]) return;
+  selectedFile = input.files[0];
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('preview-img').src = e.target.result;
+    document.getElementById('preview-wrap').style.display = 'block';
+    document.getElementById('upload-btn').style.display = 'block';
+    setStatus('Image ready. Tap "Upload to PC" to send.', 'info');
+  };
+  reader.readAsDataURL(selectedFile);
+}
+
+async function uploadImage() {
+  if (!selectedFile) return;
+
+  const btn = document.getElementById('upload-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Uploading…';
+  setStatus('', '');
+
+  const form = new FormData();
+  form.append('image', selectedFile);
+
+  try {
+    const res  = await fetch('/upload', { method: 'POST', body: form });
+    const data = await res.json();
+
+    if (data.status === 'success') {
+      showSuccess(data.filename);
+    } else {
+      setStatus('Upload failed: ' + (data.message || 'unknown error'), 'err');
+      btn.disabled = false;
+      btn.innerHTML = '⬆ Try again';
+    }
+  } catch(e) {
+    setStatus('Could not reach server. Check Wi-Fi.', 'err');
+    btn.disabled = false;
+    btn.innerHTML = '⬆ Try again';
+  }
+}
+
+function showSuccess(filename) {
+  document.getElementById('upload-btn').style.display = 'none';
+  document.getElementById('preview-wrap').style.display = 'none';
+  document.getElementById('status').textContent = '';
+  document.querySelector('.camera-icon').style.display = 'none';
+  document.querySelector('h1').style.display = 'none';
+  document.querySelector('.subtitle').style.display = 'none';
+  document.querySelector('.btn-primary').style.display = 'none';
+  document.querySelector('.btn-secondary').style.display = 'none';
+
+  document.getElementById('success-filename').textContent = 'Saved as: ' + filename;
+  document.getElementById('success-screen').style.display = 'flex';
+}
+
+function resetForm() {
+  selectedFile = null;
+  document.getElementById('file-input').value = '';
+  document.getElementById('preview-img').src = '';
+  document.getElementById('preview-wrap').style.display = 'none';
+  document.getElementById('upload-btn').style.display = 'none';
+  document.getElementById('upload-btn').disabled = false;
+  document.getElementById('upload-btn').innerHTML = '⬆ Upload to PC';
+  document.getElementById('success-screen').style.display = 'none';
+  setStatus('', '');
+
+  document.querySelector('.camera-icon').style.display = 'flex';
+  document.querySelector('h1').style.display = 'block';
+  document.querySelector('.subtitle').style.display = 'block';
+  document.querySelector('.btn-primary').style.display = 'block';
+  document.querySelector('.btn-secondary').style.display = 'block';
+}
+
+function setStatus(msg, type) {
+  const el = document.getElementById('status');
+  el.textContent  = msg;
+  el.className    = type ? 'status-' + type : '';
+}
+</script>
+</body>
+</html>

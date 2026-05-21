@@ -1,0 +1,106 @@
+.sensor-strip {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 40px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.ss-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ss-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: background 0.3s;
+}
+.ss-dot--live {
+  background: var(--green);
+  animation: ssBlink 2s ease-in-out infinite;
+}
+@keyframes ssBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+.ss-live-label {
+  font-size: 11px;
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.ss-tiles {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.ss-tile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+}
+
+.ss-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.ss-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.ss-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.ss-value {
+  font-size: 15px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.ss-status-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: 100px;
+  display: inline-block;
+}
+.badge-dry     { background: rgba(200,200,200,0.12); color: #aaa; }
+.badge-normal  { background: rgba(0,229,160,0.12);   color: var(--green); }
+.badge-moist   { background: rgba(255,200,66,0.12);  color: var(--gold); }
+.badge-wet     { background: rgba(255,120,0,0.12);   color: #ff8c00; }
+.badge-excess  { background: rgba(255,77,109,0.12);  color: var(--red); }
+
+.ss-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .sensor-strip { padding: 12px 20px; }
+  .ss-tile { padding: 0 12px; }
+}

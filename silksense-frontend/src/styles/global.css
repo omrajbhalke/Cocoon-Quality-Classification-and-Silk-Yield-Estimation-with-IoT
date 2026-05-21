@@ -1,0 +1,81 @@
+/* ── SilkSense AI — Global Design Tokens ── */
+
+:root {
+  /* Fonts */
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+
+  /* Core palette */
+  --green:  #00e5a0;
+  --red:    #ff4d6d;
+  --gold:   #ffc842;
+  --text:   #f0ede8;
+  --muted:  #6b7280;
+  --border: rgba(255, 255, 255, 0.08);
+
+  /* Surfaces */
+  --bg:       #0a0a0f;
+  --surface:  #111118;
+  --surface2: #16161f;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* Shared section-header (used across all step components) */
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.section-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 4px;
+}
+.section-desc {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ssBlink used by sensor dot and QR poll dot */
+@keyframes ssBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
